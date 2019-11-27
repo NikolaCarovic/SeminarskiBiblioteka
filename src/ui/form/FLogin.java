@@ -5,6 +5,7 @@
  */
 package ui.form;
 
+import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
@@ -126,7 +127,8 @@ public class FLogin extends javax.swing.JFrame {
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
         try {
             validate(jtxtUsername, jpass);
-            
+            JFrame frame = new FMain();
+            frame.setVisible(true);
             //dispose();
             
         } catch (Exception e) {
