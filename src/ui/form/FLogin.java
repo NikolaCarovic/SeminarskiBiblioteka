@@ -5,6 +5,9 @@
  */
 package ui.form;
 
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Nikola
@@ -16,6 +19,7 @@ public class FLogin extends javax.swing.JFrame {
      */
     public FLogin() {
         initComponents();
+        prepareForm();
     }
 
     /**
@@ -34,13 +38,15 @@ public class FLogin extends javax.swing.JFrame {
         jbtnLogin = new javax.swing.JButton();
         jbtnRegister = new javax.swing.JButton();
         jpass = new javax.swing.JPasswordField();
+        jlblErrorUsername = new javax.swing.JLabel();
+        jlblErrorPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Please enter your credentials");
 
         jlblUsername.setText("Username:");
 
-        jlblPassword.setText("Password");
+        jlblPassword.setText("Password:");
 
         jbtnLogin.setText("Login");
         jbtnLogin.addActionListener(new java.awt.event.ActionListener() {
@@ -61,14 +67,22 @@ public class FLogin extends javax.swing.JFrame {
                     .addComponent(jlblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlblPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jtxtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                    .addComponent(jpass))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnRegister)
-                    .addComponent(jbtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(jlblErrorPassword)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addComponent(jlblErrorUsername)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanelLayout.createSequentialGroup()
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jtxtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
+                            .addComponent(jpass))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jbtnRegister)
+                            .addComponent(jbtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(36, 36, 36))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,12 +92,16 @@ public class FLogin extends javax.swing.JFrame {
                     .addComponent(jlblUsername)
                     .addComponent(jtxtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jbtnLogin))
-                .addGap(18, 18, 18)
+                .addGap(1, 1, 1)
+                .addComponent(jlblErrorUsername)
+                .addGap(3, 3, 3)
                 .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblPassword)
                     .addComponent(jbtnRegister)
                     .addComponent(jpass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlblErrorPassword)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -106,7 +124,13 @@ public class FLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
-        // TODO add your handling code here:
+        try {
+            validate(jtxtUsername, jpass);
+            
+            //dispose();
+            
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
     /**
@@ -118,9 +142,29 @@ public class FLogin extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel;
     private javax.swing.JButton jbtnLogin;
     private javax.swing.JButton jbtnRegister;
+    private javax.swing.JLabel jlblErrorPassword;
+    private javax.swing.JLabel jlblErrorUsername;
     private javax.swing.JLabel jlblPassword;
     private javax.swing.JLabel jlblUsername;
     private javax.swing.JPasswordField jpass;
     private javax.swing.JTextField jtxtUsername;
     // End of variables declaration//GEN-END:variables
+
+    private void prepareForm() {
+        setLocationRelativeTo(null);
+    }
+    
+    private void validate(JTextField jtxtUsername, JPasswordField jpass) throws Exception{
+        jlblErrorUsername.setText("");
+        jlblErrorPassword.setText("");
+        
+        if(jtxtUsername.getText().isEmpty()){
+            jlblErrorUsername.setText("Username is empty!");
+            throw new Exception("Username can not be empty");
+        }
+        if(String.valueOf(jpass.getPassword()).isEmpty()){
+            jlblErrorPassword.setText("Password is empty!");
+            throw new Exception("Password can not be empty");
+        }
+    }
 }

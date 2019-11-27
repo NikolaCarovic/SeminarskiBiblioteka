@@ -53,16 +53,28 @@
                       <Component id="jlblPassword" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jtxtUsername" pref="166" max="32767" attributes="0"/>
-                      <Component id="jpass" max="32767" attributes="0"/>
-                  </Group>
-                  <EmptySpace max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jbtnRegister" min="-2" max="-2" attributes="0"/>
-                      <Component id="jbtnLogin" min="-2" pref="73" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Component id="jlblErrorPassword" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Component id="jlblErrorUsername" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                      </Group>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jtxtUsername" pref="166" max="32767" attributes="0"/>
+                              <Component id="jpass" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jbtnRegister" min="-2" max="-2" attributes="0"/>
+                              <Component id="jbtnLogin" min="-2" pref="73" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -75,13 +87,17 @@
                       <Component id="jtxtUsername" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtnLogin" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                  <Component id="jlblErrorUsername" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlblPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jbtnRegister" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jpass" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace pref="41" max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jlblErrorPassword" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -96,7 +112,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jlblPassword">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Password"/>
+            <Property name="text" type="java.lang.String" value="Password:"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnLogin">
@@ -113,6 +129,10 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="jpass">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlblErrorUsername">
+        </Component>
+        <Component class="javax.swing.JLabel" name="jlblErrorPassword">
         </Component>
       </SubComponents>
     </Container>
