@@ -5,12 +5,14 @@
  */
 package domain;
 
+import java.util.List;
+
 /**
  *
  * @author Nikola
  */
 public class Knjiga {
-    
+    Long id;
     String naslov;
     String autor;
     String izdavac;
@@ -20,6 +22,7 @@ public class Knjiga {
     int brojStrana;
     int ukupanBrojKnjiga;
     int raspolozivBrojKnjiga;
-    Double prosecnaOcena;
+    List<Ocena> ocene;
+    double prosecnaOcena;
     
 }

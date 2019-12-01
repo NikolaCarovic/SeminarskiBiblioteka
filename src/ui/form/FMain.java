@@ -5,6 +5,9 @@
  */
 package ui.form;
 
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+
 /**
  *
  * @author Nikola
@@ -44,9 +47,19 @@ public class FMain extends javax.swing.JFrame {
         jmenuKnjiga.setText("Knjiga");
 
         jmenuNovaKnjiga.setText("Nova Knjiga");
+        jmenuNovaKnjiga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuNovaKnjigaActionPerformed(evt);
+            }
+        });
         jmenuKnjiga.add(jmenuNovaKnjiga);
 
         jmenuPretraziKnjige.setText("Pretrazi Knjige");
+        jmenuPretraziKnjige.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuPretraziKnjigeActionPerformed(evt);
+            }
+        });
         jmenuKnjiga.add(jmenuPretraziKnjige);
 
         jMenuBar1.add(jmenuKnjiga);
@@ -54,6 +67,11 @@ public class FMain extends javax.swing.JFrame {
         jmenuRezervacija.setText("Rezervacija");
 
         jmenuNovaRezervacija.setText("Nova Rezervacija");
+        jmenuNovaRezervacija.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuNovaRezervacijaActionPerformed(evt);
+            }
+        });
         jmenuRezervacija.add(jmenuNovaRezervacija);
 
         jmenuPretraziRezervacije.setText("Pretrazi Rezervacije");
@@ -69,6 +87,11 @@ public class FMain extends javax.swing.JFrame {
         jmenuNalog.setText("Nalog");
 
         jmenuOdjaviSe.setText("Odjavi se");
+        jmenuOdjaviSe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenuOdjaviSeActionPerformed(evt);
+            }
+        });
         jmenuNalog.add(jmenuOdjaviSe);
 
         jMenuBar1.add(jmenuNalog);
@@ -90,8 +113,47 @@ public class FMain extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmenuPretraziRezervacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuPretraziRezervacijeActionPerformed
-        // TODO add your handling code here:
+        JDialog frame;
+        try {
+            frame = new FPretraziRezervacije();
+            frame.setVisible(true);
+        } catch (Exception e) {
+        }
     }//GEN-LAST:event_jmenuPretraziRezervacijeActionPerformed
+
+    private void jmenuNovaKnjigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuNovaKnjigaActionPerformed
+        JDialog frame;
+        try {
+            frame = new FKnjiga();
+            frame.setVisible(true);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jmenuNovaKnjigaActionPerformed
+
+    private void jmenuPretraziKnjigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuPretraziKnjigeActionPerformed
+        JDialog frame;
+        try {
+            frame = new FPretraziKnjige();
+            frame.setVisible(true);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jmenuPretraziKnjigeActionPerformed
+
+    private void jmenuNovaRezervacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuNovaRezervacijaActionPerformed
+        JDialog frame;
+        try {
+            frame = new FRezervacija();
+            frame.setVisible(true);
+            frame.setLocationRelativeTo(null);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jmenuNovaRezervacijaActionPerformed
+
+    private void jmenuOdjaviSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuOdjaviSeActionPerformed
+        dispose();
+        JFrame frame = new FLogin();
+        frame.setVisible(true);
+    }//GEN-LAST:event_jmenuOdjaviSeActionPerformed
 
     
     

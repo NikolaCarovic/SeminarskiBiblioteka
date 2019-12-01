@@ -68,11 +68,11 @@
                               <Component id="jpass" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jbtnRegister" min="-2" max="-2" attributes="0"/>
-                              <Component id="jbtnLogin" min="-2" pref="73" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jbtnLogin" max="32767" attributes="0"/>
+                              <Component id="jbtnRegister" pref="84" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>

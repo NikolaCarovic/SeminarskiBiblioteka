@@ -16,4 +16,6 @@ public class Rezervacija {
     Date datumOD;
     Date datumDo;
     StatusRezervacije statusRezervacije;
+    Knjiga knjiga;
+    Korisnik korisnik;
 }

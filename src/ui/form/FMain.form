@@ -13,11 +13,17 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nova Knjiga"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenuNovaKnjigaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmenuPretraziKnjige">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pretrazi Knjige"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenuPretraziKnjigeActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
@@ -30,6 +36,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Nova Rezervacija"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenuNovaRezervacijaActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmenuPretraziRezervacije">
               <Properties>
@@ -50,6 +59,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Odjavi se"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmenuOdjaviSeActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

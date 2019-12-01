@@ -80,10 +80,10 @@ public class FLogin extends javax.swing.JFrame {
                             .addComponent(jtxtUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                             .addComponent(jpass))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jbtnRegister)
-                            .addComponent(jbtnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(36, 36, 36))))
+                        .addGroup(jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jbtnLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jbtnRegister, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE))
+                        .addGap(25, 25, 25))))
         );
         jPanelLayout.setVerticalGroup(
             jPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -129,7 +129,7 @@ public class FLogin extends javax.swing.JFrame {
             validate(jtxtUsername, jpass);
             JFrame frame = new FMain();
             frame.setVisible(true);
-            //dispose();
+            dispose();
             
         } catch (Exception e) {
         }

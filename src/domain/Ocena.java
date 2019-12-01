@@ -11,7 +11,9 @@ package domain;
  */
 public class Ocena {
     
+    Long id;
     Double ocena;
     String opis;
-    
+    Knjiga knjiga;
+    Korisnik korisnik;
 }

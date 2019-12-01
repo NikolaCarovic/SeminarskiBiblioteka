@@ -11,6 +11,6 @@ package domain;
  */
 public class Korisnik extends Nalog{
     
-     Status status;
-     int brojIznajmljivanja;
+    Status status;
+    int brojAktivnihIznajmljivanja;
 }
