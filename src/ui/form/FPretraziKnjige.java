@@ -91,6 +91,11 @@ public class FPretraziKnjige extends javax.swing.JDialog {
         jButton1.setText("Pretrazi");
 
         jButton3.setText("Izadji");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Rezervisi");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -190,6 +195,10 @@ public class FPretraziKnjige extends javax.swing.JDialog {
         } catch (Exception e) {
         }
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     
 
