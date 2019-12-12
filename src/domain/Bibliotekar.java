@@ -11,6 +11,35 @@ package domain;
  */
 public class Bibliotekar extends Nalog{
     
-    Long sifraZaposlenog;
-    String brojTelefona;
+    private Long sifraZaposlenog;
+    private String brojTelefona;
+
+    public Bibliotekar() {
+    }
+
+    
+
+    public Bibliotekar(Long sifraZaposlenog, String brojTelefona, String korisnickoIme, String sifra, String imePrezime, String email, String JMBG) {
+        super(korisnickoIme, sifra, imePrezime, email, JMBG);
+        this.sifraZaposlenog = sifraZaposlenog;
+        this.brojTelefona = brojTelefona;
+    }
+
+    public Long getSifraZaposlenog() {
+        return sifraZaposlenog;
+    }
+
+    public void setSifraZaposlenog(Long sifraZaposlenog) {
+        this.sifraZaposlenog = sifraZaposlenog;
+    }
+
+    public String getBrojTelefona() {
+        return brojTelefona;
+    }
+
+    public void setBrojTelefona(String brojTelefona) {
+        this.brojTelefona = brojTelefona;
+    }
+    
+    
 }

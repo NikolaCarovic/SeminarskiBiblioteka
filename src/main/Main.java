@@ -7,6 +7,7 @@ package main;
 
 import javax.swing.JFrame;
 import ui.form.FLogin;
+import ui.form.FMain;
 
 /**
  *
@@ -14,7 +15,7 @@ import ui.form.FLogin;
  */
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new FLogin();
+        JFrame frame = new FMain();
         frame.setVisible(true);
     }
 }

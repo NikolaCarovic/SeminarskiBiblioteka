@@ -5,7 +5,12 @@
  */
 package ui.form;
 
+import controller.Controller;
+import domain.Knjiga;
+import java.util.LinkedList;
+import java.util.List;
 import javax.swing.JDialog;
+import ui.table.model.KnjigaTabelModel;
 
 /**
  *
@@ -77,8 +82,8 @@ public class FPretraziKnjige extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 465, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 562, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,5 +228,7 @@ public class FPretraziKnjige extends javax.swing.JDialog {
 
     private void prepareForm() {
         setLocationRelativeTo(null);
+        List<Knjiga> knjige = Controller.getInstance().getAll();
+        jTable1.setModel(new KnjigaTabelModel(knjige));
     }
 }

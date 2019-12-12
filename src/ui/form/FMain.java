@@ -5,8 +5,16 @@
  */
 package ui.form;
 
+import controller.Controller;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.Panel;
+import java.util.EventListener;
+import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -22,6 +30,8 @@ public class FMain extends javax.swing.JFrame {
         
         prepareForm();
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -33,6 +43,8 @@ public class FMain extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuLogin = new javax.swing.JMenuItem();
         jmenuKnjiga = new javax.swing.JMenu();
         jmenuNovaKnjiga = new javax.swing.JMenuItem();
         jmenuPretraziKnjige = new javax.swing.JMenuItem();
@@ -43,6 +55,23 @@ public class FMain extends javax.swing.JFrame {
         jmenuOdjaviSe = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jMenu1.setText("Login");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuLogin.setText("Login");
+        jMenuLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuLoginActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuLogin);
+
+        jMenuBar1.add(jMenu1);
 
         jmenuKnjiga.setText("Knjiga");
 
@@ -102,64 +131,80 @@ public class FMain extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 507, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 279, Short.MAX_VALUE)
+            .addGap(0, 499, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmenuPretraziRezervacijeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuPretraziRezervacijeActionPerformed
-        JDialog frame;
+        /*JDialog frame;
         try {
             frame = new FPretraziRezervacije();
             frame.setVisible(true);
         } catch (Exception e) {
-        }
+        }*/
+        Controller.getInstance().formaPretragaRezervacija();
     }//GEN-LAST:event_jmenuPretraziRezervacijeActionPerformed
 
     private void jmenuNovaKnjigaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuNovaKnjigaActionPerformed
-        JDialog frame;
+        /*JDialog frame;
         try {
             frame = new FKnjiga();
             frame.setVisible(true);
         } catch (Exception e) {
-        }
+        }*/
+        Controller.getInstance().formaNovaKnjiga();
     }//GEN-LAST:event_jmenuNovaKnjigaActionPerformed
 
     private void jmenuPretraziKnjigeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuPretraziKnjigeActionPerformed
-        JDialog frame;
+        /*JDialog frame;
         try {
             frame = new FPretraziKnjige();
             frame.setVisible(true);
         } catch (Exception e) {
-        }
+        }*/
+        Controller.getInstance().formaPretraziKnjige();
     }//GEN-LAST:event_jmenuPretraziKnjigeActionPerformed
 
     private void jmenuNovaRezervacijaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuNovaRezervacijaActionPerformed
-        JDialog frame;
+        /*JDialog frame;
         try {
             frame = new FRezervacija();
             frame.setVisible(true);
             frame.setLocationRelativeTo(null);
         } catch (Exception e) {
-        }
+        }*/
+        Controller.getInstance().formaNovaRezervacija();
     }//GEN-LAST:event_jmenuNovaRezervacijaActionPerformed
 
     private void jmenuOdjaviSeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenuOdjaviSeActionPerformed
-        dispose();
+        /*dispose();
         JFrame frame = new FLogin();
-        frame.setVisible(true);
+        frame.setVisible(true);*/
     }//GEN-LAST:event_jmenuOdjaviSeActionPerformed
+
+    private void jMenuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLoginActionPerformed
+        Controller.getInstance().formaLogin();
+        formiranjePanela();
+        
+    }//GEN-LAST:event_jMenuLoginActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuLogin;
     private javax.swing.JMenu jmenuKnjiga;
     private javax.swing.JMenu jmenuNalog;
     private javax.swing.JMenuItem jmenuNovaKnjiga;
@@ -173,5 +218,12 @@ public class FMain extends javax.swing.JFrame {
     private void prepareForm() {
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
+        
+        
     }
+
+    private void formiranjePanela() {
+        
+    }
+    
 }

@@ -11,11 +11,62 @@ package domain;
  */
 public abstract class Nalog {
     
-    String korisnickoIme;
-    String sifra;
-    String imePrezime;
-    String email;
-    String JMBG;
+    private String korisnickoIme;
+    private String sifra;
+    private String imePrezime;
+    private String email;
+    private String JMBG;
+
+    public Nalog() {
+    }
+
+    public Nalog(String korisnickoIme, String sifra, String imePrezime, String email, String JMBG) {
+        this.korisnickoIme = korisnickoIme;
+        this.sifra = sifra;
+        this.imePrezime = imePrezime;
+        this.email = email;
+        this.JMBG = JMBG;
+    }
+
+    public String getKorisnickoIme() {
+        return korisnickoIme;
+    }
+
+    public void setKorisnickoIme(String korisnickoIme) {
+        this.korisnickoIme = korisnickoIme;
+    }
+
+    public String getSifra() {
+        return sifra;
+    }
+
+    public void setSifra(String sifra) {
+        this.sifra = sifra;
+    }
+
+    public String getImePrezime() {
+        return imePrezime;
+    }
+
+    public void setImePrezime(String imePrezime) {
+        this.imePrezime = imePrezime;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getJMBG() {
+        return JMBG;
+    }
+
+    public void setJMBG(String JMBG) {
+        this.JMBG = JMBG;
+    }
     
     
 }

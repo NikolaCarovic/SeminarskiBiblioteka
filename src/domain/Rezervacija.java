@@ -13,9 +13,59 @@ import java.util.Date;
  */
 public class Rezervacija {
     
-    Date datumOD;
-    Date datumDo;
-    StatusRezervacije statusRezervacije;
-    Knjiga knjiga;
-    Korisnik korisnik;
+    private Date datumOD;
+    private Date datumDo;
+    private StatusRezervacije statusRezervacije;
+    private Knjiga knjiga;
+    private Korisnik korisnik;
+
+    public Rezervacija(Date datumOD, Date datumDo, StatusRezervacije statusRezervacije, Knjiga knjiga, Korisnik korisnik) {
+        this.datumOD = datumOD;
+        this.datumDo = datumDo;
+        this.statusRezervacije = statusRezervacije;
+        this.knjiga = knjiga;
+        this.korisnik = korisnik;
+    }
+
+    public Date getDatumOD() {
+        return datumOD;
+    }
+
+    public void setDatumOD(Date datumOD) {
+        this.datumOD = datumOD;
+    }
+
+    public Date getDatumDo() {
+        return datumDo;
+    }
+
+    public void setDatumDo(Date datumDo) {
+        this.datumDo = datumDo;
+    }
+
+    public StatusRezervacije getStatusRezervacije() {
+        return statusRezervacije;
+    }
+
+    public void setStatusRezervacije(StatusRezervacije statusRezervacije) {
+        this.statusRezervacije = statusRezervacije;
+    }
+
+    public Knjiga getKnjiga() {
+        return knjiga;
+    }
+
+    public void setKnjiga(Knjiga knjiga) {
+        this.knjiga = knjiga;
+    }
+
+    public Korisnik getKorisnik() {
+        return korisnik;
+    }
+
+    public void setKorisnik(Korisnik korisnik) {
+        this.korisnik = korisnik;
+    }
+    
+    
 }

@@ -5,6 +5,15 @@
  */
 package ui.form;
 
+import controller.Controller;
+import domain.Bibliotekar;
+import domain.Knjiga;
+import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Nikola
@@ -30,7 +39,6 @@ public class FKnjiga extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -39,7 +47,6 @@ public class FKnjiga extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jtxtID = new javax.swing.JTextField();
         jtxtNaslov = new javax.swing.JTextField();
         jtxtAutor = new javax.swing.JTextField();
         jtxtIzdavac = new javax.swing.JTextField();
@@ -50,22 +57,19 @@ public class FKnjiga extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jtxtOpis = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        jbtnOtkazi = new javax.swing.JButton();
+        errorNaslov = new javax.swing.JLabel();
+        errorAutor = new javax.swing.JLabel();
+        errorIzdavac = new javax.swing.JLabel();
+        errorIsbn = new javax.swing.JLabel();
+        errorJezik = new javax.swing.JLabel();
+        errorBrojStrana = new javax.swing.JLabel();
+        errorUkupanBroj = new javax.swing.JLabel();
+        errorOpis = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Nova Knjiga"));
-
-        jLabel1.setText("ID:");
 
         jLabel2.setText("Naslov:");
 
@@ -79,7 +83,7 @@ public class FKnjiga extends javax.swing.JDialog {
 
         jLabel7.setText("Broj strana:");
 
-        jLabel8.setText("Ukupan broj knjiga:");
+        jLabel8.setText("Ukupan broj primeraka:");
 
         jLabel9.setText("Opis:");
 
@@ -94,31 +98,18 @@ public class FKnjiga extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jtxtOpis);
 
         jButton1.setText("Sacuvaj");
-
-        jButton2.setText("Otkazi");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jButton1ActionPerformed(evt);
             }
         });
 
-        jLabel10.setText("jLabel10");
-
-        jLabel11.setText("jLabel11");
-
-        jLabel12.setText("jLabel12");
-
-        jLabel13.setText("jLabel13");
-
-        jLabel14.setText("jLabel14");
-
-        jLabel15.setText("jLabel15");
-
-        jLabel16.setText("jLabel16");
-
-        jLabel17.setText("jLabel17");
-
-        jLabel18.setText("jLabel18");
+        jbtnOtkazi.setText("Otkazi");
+        jbtnOtkazi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnOtkaziActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -129,7 +120,6 @@ public class FKnjiga extends javax.swing.JDialog {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,85 +137,78 @@ public class FKnjiga extends javax.swing.JDialog {
                             .addComponent(jtxtISBN)
                             .addComponent(jtxtIzdavac)
                             .addComponent(jtxtAutor)
-                            .addComponent(jtxtID)
                             .addComponent(jtxtNaslov))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12)
-                            .addComponent(jLabel13)
-                            .addComponent(jLabel14)
-                            .addComponent(jLabel15)
-                            .addComponent(jLabel16)
-                            .addComponent(jLabel17)
-                            .addComponent(jLabel18))
+                            .addComponent(errorNaslov)
+                            .addComponent(errorAutor)
+                            .addComponent(errorIzdavac)
+                            .addComponent(errorIsbn)
+                            .addComponent(errorJezik)
+                            .addComponent(errorBrojStrana)
+                            .addComponent(errorUkupanBroj)
+                            .addComponent(errorOpis))
                         .addGap(146, 146, 146))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jbtnOtkazi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jtxtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel5)
+                    .addComponent(jtxtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtNaslov, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel11)))
+                        .addComponent(errorNaslov)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel12)))
+                        .addComponent(errorAutor)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtIzdavac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel13)))
+                        .addComponent(errorIzdavac)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jtxtISBN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel14)))
+                .addComponent(errorIsbn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtJezik, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel15)))
+                        .addComponent(errorJezik)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtBrojStrana, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel16)))
+                        .addComponent(errorBrojStrana)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jtxtUkupanBrojKnjiga, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel17)))
+                        .addComponent(errorUkupanBroj)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel18))
+                    .addComponent(errorOpis))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2)
+                .addComponent(jbtnOtkazi)
                 .addGap(34, 34, 34))
         );
 
@@ -253,25 +236,45 @@ public class FKnjiga extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_jtxtIzdavacActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbtnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOtkaziActionPerformed
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbtnOtkaziActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(validacija()){
+            Long isbn = Long.valueOf(jtxtISBN.getText());
+            String naslov = jtxtNaslov.getText();
+            String autor = jtxtAutor.getText();
+            String izdavac = jtxtIzdavac.getText();
+            String jezik = jtxtJezik.getText();
+            String opis = jtxtOpis.getText();
+            int brojKnjiga = Integer.valueOf(jtxtBrojStrana.getText());
+            int ukupanBroj = Integer.valueOf(jtxtUkupanBrojKnjiga.getText());
+            Bibliotekar b = new Bibliotekar();
+            b.setKorisnickoIme("Bibliotekar1");
+            try {
+                Controller.getInstance().sacuvajKnjigu(new Knjiga(naslov, autor, izdavac, isbn, jezik, opis, brojKnjiga, ukupanBroj, ukupanBroj, 0, b));
+                JOptionPane.showMessageDialog(rootPane, "Ubacena je nova knjiga");
+                //dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(FKnjiga.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel errorAutor;
+    private javax.swing.JLabel errorBrojStrana;
+    private javax.swing.JLabel errorIsbn;
+    private javax.swing.JLabel errorIzdavac;
+    private javax.swing.JLabel errorJezik;
+    private javax.swing.JLabel errorNaslov;
+    private javax.swing.JLabel errorOpis;
+    private javax.swing.JLabel errorUkupanBroj;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -282,9 +285,9 @@ public class FKnjiga extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnOtkazi;
     private javax.swing.JTextField jtxtAutor;
     private javax.swing.JTextField jtxtBrojStrana;
-    private javax.swing.JTextField jtxtID;
     private javax.swing.JTextField jtxtISBN;
     private javax.swing.JTextField jtxtIzdavac;
     private javax.swing.JTextField jtxtJezik;
@@ -295,5 +298,79 @@ public class FKnjiga extends javax.swing.JDialog {
 
     private void prepareForm() {
         setLocationRelativeTo(null);
+    }
+
+    private boolean validacija() {
+        boolean pom = true;
+        izbrisi();
+        if(jtxtNaslov.getText().isEmpty()){
+            errorNaslov.setText("Unesite naslov!");
+            pom = false;
+        }
+        if(jtxtAutor.getText().isEmpty()){
+            errorAutor.setText("Unesite autora!");
+            pom = false;
+        }
+        if(jtxtIzdavac.getText().isEmpty()){
+            errorIzdavac.setText("Unesite izdavaca!");
+            pom = false;
+        }
+        if(jtxtISBN.getText().isEmpty()){
+            errorIsbn.setText("Unesite isbn!");
+            pom = false;
+        }
+        if(jtxtJezik.getText().isEmpty()){
+            errorJezik.setText("Unesite jezik!");
+            pom = false;
+        }
+        if(jtxtBrojStrana.getText().isEmpty()){
+            errorBrojStrana.setText("Unesite broj strana!");
+            pom = false;
+        }
+        if(jtxtUkupanBrojKnjiga.getText().isEmpty()){
+            errorUkupanBroj.setText("Unesite ukupan broj primeraka!");
+            pom = false;
+        }
+        if(jtxtOpis.getText().isEmpty()){
+            errorOpis.setText("Unesite opis!");
+            pom = false;
+        }
+        try {
+            Integer.valueOf(jtxtBrojStrana.getText());
+        } catch (Exception e) {
+            errorBrojStrana.setText("Pogresan unos");
+            pom = false;
+        }
+        
+        try {
+            Integer.valueOf(jtxtUkupanBrojKnjiga.getText());
+        } catch (Exception e) {
+            errorUkupanBroj.setText("Pogresan unos");
+            pom = false;
+        }
+        
+        
+        
+        return pom;
+    }
+    
+    private void izbrisi(){
+        errorAutor.setText("");
+        errorBrojStrana.setText("");
+        errorIzdavac.setText("");
+        errorIsbn.setText("");
+        errorJezik.setText("");
+        errorNaslov.setText("");
+        errorUkupanBroj.setText("");
+        errorOpis.setText("");
+        
+        errorAutor.setForeground(Color.red);
+        errorBrojStrana.setForeground(Color.red);
+        errorIzdavac.setForeground(Color.red);
+        errorIsbn.setForeground(Color.red);
+        errorJezik.setForeground(Color.red);
+        errorNaslov.setForeground(Color.red);
+        errorUkupanBroj.setForeground(Color.red);
+        errorOpis.setForeground(Color.red);
     }
 }

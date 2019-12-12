@@ -5,6 +5,7 @@
  */
 package ui.form;
 
+import controller.Controller;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -13,7 +14,7 @@ import javax.swing.JTextField;
  *
  * @author Nikola
  */
-public class FLogin extends javax.swing.JFrame {
+public class FLogin extends javax.swing.JDialog {
 
     /**
      * Creates new form FLogin
@@ -42,8 +43,7 @@ public class FLogin extends javax.swing.JFrame {
         jlblErrorUsername = new javax.swing.JLabel();
         jlblErrorPassword = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Please enter your credentials");
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jlblUsername.setText("Username:");
 
@@ -125,13 +125,17 @@ public class FLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
-        try {
+        /*try {
             validate(jtxtUsername, jpass);
             JFrame frame = new FMain();
             frame.setVisible(true);
-            dispose();
+            //dispose();
             
         } catch (Exception e) {
+        }*/
+        if(Controller.getInstance().validacija(jtxtUsername.getText(), String.valueOf(jpass.getPassword()))){
+            Controller.getInstance().omoguci();
+            dispose();
         }
     }//GEN-LAST:event_jbtnLoginActionPerformed
 
