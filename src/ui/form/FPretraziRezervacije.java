@@ -5,7 +5,16 @@
  */
 package ui.form;
 
+import controller.Controller;
+import domain.Knjiga;
+import domain.Korisnik;
+import domain.Ocena;
+import domain.Rezervacija;
+import domain.StatusRezervacije;
+import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import ui.table.model.RezervacijaTableModel;
 
 /**
  *
@@ -18,7 +27,7 @@ public class FPretraziRezervacije extends javax.swing.JDialog {
      */
     public FPretraziRezervacije() {
         initComponents();
-        
+
         prepareForm();
     }
 
@@ -66,6 +75,11 @@ public class FPretraziRezervacije extends javax.swing.JDialog {
         });
 
         jbtnPromeniStatus.setText("Promeni status");
+        jbtnPromeniStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnPromeniStatusActionPerformed(evt);
+            }
+        });
 
         jbtnOtkazi.setText("Otkazi");
         jbtnOtkazi.addActionListener(new java.awt.event.ActionListener() {
@@ -148,15 +162,31 @@ public class FPretraziRezervacije extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnIzaberiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnIzaberiActionPerformed
-        // TODO add your handling code here:
+        RezervacijaTableModel rtm = (RezervacijaTableModel) jTable1.getModel();
+        int prom = jTable1.getSelectedRow();
+
+        Rezervacija r = rtm.getRezervacije(prom);
+        Controller.getInstance().getMapa().put("current_rezervacija", r);
+        //Controller.getInstance().formaNovaRezervacija();
+        dispose();
     }//GEN-LAST:event_jbtnIzaberiActionPerformed
 
     private void jbtnOceniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOceniActionPerformed
-        JDialog frame;
-        try {
-            frame = new FOcena();
-            frame.setVisible(true);
-        } catch (Exception e) {
+        boolean postoji = false;
+        List<Ocena> lista = Controller.getInstance().vratiSveOceneDateKnjige((Knjiga) Controller.getInstance().getMapa().get("selected_knjiga"));
+        for (Ocena ocena1 : lista) {
+            if (ocena1.getKorisnik().getKorisnickoIme().equals(((Korisnik) Controller.getInstance().getMapa().get("active_user")).getKorisnickoIme())) {
+                JOptionPane.showMessageDialog(rootPane, "Vec ste ocenili datu knjigu");
+                postoji = true;
+            }
+        }
+        if (!postoji) {
+            JDialog frame;
+            try {
+                frame = new FOcena();
+                frame.setVisible(true);
+            } catch (Exception e) {
+            }
         }
     }//GEN-LAST:event_jbtnOceniActionPerformed
 
@@ -164,7 +194,21 @@ public class FPretraziRezervacije extends javax.swing.JDialog {
         dispose();
     }//GEN-LAST:event_jbtnOtkaziActionPerformed
 
-    
+    private void jbtnPromeniStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnPromeniStatusActionPerformed
+        RezervacijaTableModel rtm = (RezervacijaTableModel) jTable1.getModel();
+        int prom = jTable1.getSelectedRow();
+
+        Rezervacija r = getSelected();
+        if (r.getStatusRezervacije().equals(StatusRezervacije.aktivna)) {
+            r.setStatusRezervacije(StatusRezervacije.vracena);
+        } else{
+            r.setStatusRezervacije(StatusRezervacije.aktivna);
+        }
+        rtm.alter(r, prom);
+        Controller.getInstance().izmeniRezervaciju(r);
+        JOptionPane.showMessageDialog(rootPane, "Promenjen je status");
+    }//GEN-LAST:event_jbtnPromeniStatusActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -180,5 +224,21 @@ public class FPretraziRezervacije extends javax.swing.JDialog {
 
     private void prepareForm() {
         setLocationRelativeTo(null);
+
+        fillTable();
+
+        jLabel2.setText(Controller.getInstance().postaviImeUsera(Controller.getInstance().getMapa().get("active_user")));
+    }
+
+    private void fillTable() {
+        jTable1.setModel(new RezervacijaTableModel(Controller.getInstance().vratiRezervacije()));
+    }
+
+    private Rezervacija getSelected() {
+        RezervacijaTableModel rtm = (RezervacijaTableModel) jTable1.getModel();
+        int prom = jTable1.getSelectedRow();
+
+        Rezervacija r = rtm.getRezervacije(prom);
+        return r;
     }
 }

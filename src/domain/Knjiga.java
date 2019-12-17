@@ -26,6 +26,11 @@ public class Knjiga {
     private double prosecnaOcena;
     private Bibliotekar bibliotekar;
 
+    public Knjiga() {
+    }
+
+    
+    
     public Knjiga(String naslov, String autor, String izdavac, Long isbn, String jezik, String opis, int brojStrana, int ukupanBrojKnjiga, int raspolozivBrojKnjiga, double prosecnaOcena, Bibliotekar bibliotekar) {
         
         this.naslov = naslov;

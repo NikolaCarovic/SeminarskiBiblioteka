@@ -68,6 +68,14 @@ public class KnjigaTabelModel extends AbstractTableModel{
         fireTableDataChanged();
     }
     
+    public Knjiga getKnjiga(int row){
+        return lista.get(row);
+    }
     
+    public void removeKnjiga(int row){
+        lista.remove(row);
+        fireTableDataChanged();
+    }
     
+   
 }

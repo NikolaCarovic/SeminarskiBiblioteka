@@ -5,18 +5,13 @@
  */
 package storage;
 
-import domain.Knjiga;
-import java.sql.SQLException;
+import domain.Bibliotekar;
 import java.util.List;
 
 /**
  *
  * @author Nikola
  */
-public interface StorageKnjiga {
-    
-    List<Knjiga> getAll();
-    Knjiga save(Knjiga knjiga) throws SQLException;
-    Knjiga update(Knjiga knjiga);
-    Knjiga delete(Knjiga knjiga);
+public interface StorageBibliotekar {
+    List<Bibliotekar> getAll();
 }

@@ -11,28 +11,16 @@ package domain;
  */
 public class Ocena {
     
-    private Long id;
     private Double ocena;
     private String opis;
     private Knjiga knjiga;
     private Korisnik korisnik;
 
-    public Ocena(Long id, Double ocena, String opis, Knjiga knjiga, Korisnik korisnik) {
-        this.id = id;
+    public Ocena( Double ocena, String opis, Knjiga knjiga, Korisnik korisnik) {
         this.ocena = ocena;
         this.opis = opis;
         this.knjiga = knjiga;
         this.korisnik = korisnik;
-    }
-
-    
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public Double getOcena() {

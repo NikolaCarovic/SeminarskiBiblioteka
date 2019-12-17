@@ -6,6 +6,9 @@
 package ui.form;
 
 import controller.Controller;
+import domain.Nalog;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
@@ -125,15 +128,21 @@ public class FLogin extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbtnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnLoginActionPerformed
-        /*try {
+        try {
+            /*try {
             validate(jtxtUsername, jpass);
             JFrame frame = new FMain();
             frame.setVisible(true);
             //dispose();
             
-        } catch (Exception e) {
-        }*/
-        if(Controller.getInstance().validacija(jtxtUsername.getText(), String.valueOf(jpass.getPassword()))){
+            } catch (Exception e) {
+            }*/
+            validate(jtxtUsername, jpass);
+        } catch (Exception ex) {
+            Logger.getLogger(FLogin.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(Controller.getInstance().login(jtxtUsername.getText(), String.valueOf(jpass.getPassword()))){
+            Controller.getInstance().formaMain();
             Controller.getInstance().omoguci();
             dispose();
         }

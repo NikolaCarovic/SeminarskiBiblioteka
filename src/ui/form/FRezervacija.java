@@ -5,7 +5,22 @@
  */
 package ui.form;
 
+import controller.Controller;
+import domain.Knjiga;
+import domain.Korisnik;
+import domain.Ocena;
+import domain.Rezervacija;
+import domain.StatusRezervacije;
+import java.util.Date;
+import java.text.Format;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
+import javax.swing.plaf.metal.OceanTheme;
 
 /**
  *
@@ -13,12 +28,14 @@ import javax.swing.JDialog;
  */
 public class FRezervacija extends javax.swing.JDialog {
 
+    SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy.");
+
     /**
      * Creates new form FRezervacija
      */
     public FRezervacija() {
         initComponents();
-        
+
         prepareForm();
     }
 
@@ -57,6 +74,11 @@ public class FRezervacija extends javax.swing.JDialog {
         jLabel3.setText("Datum vracanja");
 
         jbtnRezervisi.setText("Rezervisi");
+        jbtnRezervisi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnRezervisiActionPerformed(evt);
+            }
+        });
 
         jbtnOtkazi.setText("Otkazi");
         jbtnOtkazi.addActionListener(new java.awt.event.ActionListener() {
@@ -178,13 +200,42 @@ public class FRezervacija extends javax.swing.JDialog {
             frame.setVisible(true);
         } catch (Exception e) {
         }
+        dispose();
     }//GEN-LAST:event_jbtnIzaberiActionPerformed
 
     private void jbtnOtkaziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOtkaziActionPerformed
         dispose();
     }//GEN-LAST:event_jbtnOtkaziActionPerformed
 
-    
+    private void jbtnRezervisiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnRezervisiActionPerformed
+        //Date datumOd = Date.valueOf(jTextField2.getText());
+        try {
+            Date datumOd2 = sdf.parse(jTextField2.getText());
+            sdf.format(datumOd2);
+            Date datumDo2 = sdf.parse(jTextField3.getText());
+            sdf.format(datumDo2);
+            //Date datumDo = Date.valueOf(jTextField3.getText());
+            String naziv = jTextField1.getText();
+
+            Knjiga k = new Knjiga();
+            Korisnik korisnik = new Korisnik();
+            //Srediti ovde da ne rezervise po defaultu knjigu koja je ovde odredjena i 
+            //korisnika koji je ovde odredjen, ovo je samo pokazatelj da rad sa bazom radi.
+            k.setIsbn(44l);
+            k.setNaslov(naziv);
+            korisnik.setKorisnickoIme("Korisnik2");
+
+            Rezervacija r = new Rezervacija(datumOd2, datumDo2, StatusRezervacije.aktivna, k, korisnik);
+
+            Controller.getInstance().sacuvajRezervaciju(r);
+            JOptionPane.showMessageDialog(rootPane, "Bravo, svaka cast!");
+        } catch (ParseException ex) {
+            Logger.getLogger(FRezervacija.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
+    }//GEN-LAST:event_jbtnRezervisiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -205,5 +256,29 @@ public class FRezervacija extends javax.swing.JDialog {
 
     private void prepareForm() {
         setLocationRelativeTo(null);
+
+        jLabel5.setText(Controller.getInstance().postaviImeUsera(Controller.getInstance().getMapa().get("active_user")));
+
+        jtxtOcena.setEditable(false);
+        jTextField1.setEditable(false);
+
+        fillKnjiga();
+    }
+
+    private void fillKnjiga() {
+        Knjiga k = (Knjiga) Controller.getInstance().getMapa().get("selected_knjiga");
+        if (k != null) {
+            List<Ocena> lista = Controller.getInstance().vratiSveOceneDateKnjige(k);
+            double suma = 0;
+            int br = 0;
+            for (Ocena ocena : lista) {
+                suma += ocena.getOcena();
+                br++;
+            }
+
+            double konacna = suma / br;
+            jtxtOcena.setText(konacna + "");
+            jTextField1.setText(k.getNaslov());
+        }
     }
 }

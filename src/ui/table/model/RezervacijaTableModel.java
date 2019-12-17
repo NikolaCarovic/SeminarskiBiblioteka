@@ -66,7 +66,17 @@ public class RezervacijaTableModel extends AbstractTableModel{
         fireTableDataChanged();
     }
     
+    public Rezervacija getRezervacije(int row){
+        return lista.get(row);
+    }
     
-    
+    public void alter(Rezervacija r, int row){
+        lista.get(row).setDatumDo(r.getDatumDo());
+        lista.get(row).setDatumOD(r.getDatumOD());
+        lista.get(row).setKnjiga(r.getKnjiga());
+        lista.get(row).setKorisnik(r.getKorisnik());
+        lista.get(row).setStatusRezervacije(r.getStatusRezervacije());
+        fireTableDataChanged();
+    }
     
 }

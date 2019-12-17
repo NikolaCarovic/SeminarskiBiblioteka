@@ -10,6 +10,8 @@ package domain;
  * @author Nikola
  */
 public abstract class Nalog {
+
+    
     
     private String korisnickoIme;
     private String sifra;

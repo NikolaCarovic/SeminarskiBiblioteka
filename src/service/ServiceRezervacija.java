@@ -5,18 +5,15 @@
  */
 package service;
 
-import domain.Knjiga;
-import java.sql.SQLException;
+import domain.Rezervacija;
 import java.util.List;
 
 /**
  *
  * @author Nikola
  */
-public interface ServiceKnjiga {
-    
-    List<Knjiga> getAll();
-    Knjiga save(Knjiga knjiga) throws SQLException;
-    Knjiga update(Knjiga knjiga);
-    Knjiga delete(Knjiga knjiga);
+public interface ServiceRezervacija {
+    List<Rezervacija> getAll();
+    Rezervacija save(Rezervacija rezervacija);
+    Rezervacija update(Rezervacija rezervacija);
 }

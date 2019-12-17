@@ -14,6 +14,9 @@ public class Korisnik extends Nalog{
     private Status status;
     private int brojAktivnihIznajmljivanja;
 
+    public Korisnik() {
+    }
+
     public Korisnik(Status status, int brojAktivnihIznajmljivanja, String korisnickoIme, String sifra, String imePrezime, String email, String JMBG) {
         super(korisnickoIme, sifra, imePrezime, email, JMBG);
         this.status = status;

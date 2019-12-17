@@ -10,6 +10,7 @@ import domain.Knjiga;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import ui.table.model.KnjigaTabelModel;
 
 /**
@@ -112,8 +113,18 @@ public class FPretraziKnjige extends javax.swing.JDialog {
         jButton5.setText("Izmeni");
 
         jButton6.setText("Obrisi");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Izaberi");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -193,6 +204,7 @@ public class FPretraziKnjige extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Controller.getInstance().getMapa().put("selected_knjiga", getSelected());
         JDialog frame;
         try {
             frame = new FRezervacija();
@@ -204,6 +216,22 @@ public class FPretraziKnjige extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        Controller.getInstance().getMapa().put("selected_knjiga", getSelected());
+        Controller.getInstance().formaNovaRezervacija();
+        dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        KnjigaTabelModel ktm = (KnjigaTabelModel) jTable1.getModel();
+        int prom = jTable1.getSelectedRow();
+        
+        Controller.getInstance().izbrisiKnjigu(getSelected());
+        ktm.removeKnjiga(prom);
+        
+        JOptionPane.showMessageDialog(rootPane, "Izbrisano bato");
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     
 
@@ -228,7 +256,15 @@ public class FPretraziKnjige extends javax.swing.JDialog {
 
     private void prepareForm() {
         setLocationRelativeTo(null);
-        List<Knjiga> knjige = Controller.getInstance().getAll();
+        List<Knjiga> knjige = Controller.getInstance().vratiKnjige();
         jTable1.setModel(new KnjigaTabelModel(knjige));
+    }
+    
+    private Knjiga getSelected(){
+        KnjigaTabelModel ktm = (KnjigaTabelModel) jTable1.getModel();
+        int prom = jTable1.getSelectedRow();
+        
+        Knjiga k = ktm.getKnjiga(prom);
+        return k;
     }
 }

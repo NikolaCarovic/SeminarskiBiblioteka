@@ -31,6 +31,19 @@ public class FMain extends javax.swing.JFrame {
         prepareForm();
     }
     
+    public FMain(Acive nalog){
+        initComponents();
+        if(nalog.equals(Acive.INACTIVE)){
+            prepareForm();
+        }
+        
+        if(nalog.equals(Acive.ACTIVE)){
+            prepareForm2();
+        }
+    }
+
+    
+    
     
 
     /**
@@ -190,7 +203,7 @@ public class FMain extends javax.swing.JFrame {
 
     private void jMenuLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuLoginActionPerformed
         Controller.getInstance().formaLogin();
-        formiranjePanela();
+        dispose();
         
     }//GEN-LAST:event_jMenuLoginActionPerformed
 
@@ -219,11 +232,17 @@ public class FMain extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setExtendedState(MAXIMIZED_BOTH);
         
-        
+        jmenuKnjiga.setEnabled(false);
+        jmenuRezervacija.setEnabled(false);
+        jmenuNalog.setEnabled(false);
     }
 
-    private void formiranjePanela() {
+    private void prepareForm2() {
+        setLocationRelativeTo(null);
+        setExtendedState(MAXIMIZED_BOTH);
         
+        jMenu1.setVisible(false);
     }
+
     
 }

@@ -35,5 +35,15 @@ public class ServiceKnjigaImpl implements ServiceKnjiga{
     public Knjiga save(Knjiga knjiga) throws SQLException{
         return storageKnjiga.save(knjiga);
     }
+
+    @Override
+    public Knjiga update(Knjiga knjiga) {
+        return storageKnjiga.update(knjiga);
+    }
+
+    @Override
+    public Knjiga delete(Knjiga knjiga) {
+        return storageKnjiga.delete(knjiga);
+    }
     
 }

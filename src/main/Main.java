@@ -5,6 +5,7 @@
  */
 package main;
 
+import controller.Controller;
 import javax.swing.JFrame;
 import ui.form.FLogin;
 import ui.form.FMain;
@@ -15,7 +16,8 @@ import ui.form.FMain;
  */
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new FMain();
-        frame.setVisible(true);
+        //JFrame frame = new FMain();
+        //frame.setVisible(true);
+        Controller.getInstance().formaMain2();
     }
 }
